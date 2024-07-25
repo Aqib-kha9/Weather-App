@@ -5,12 +5,12 @@ import './Search.css'
 import { useState } from 'react';
 
 
+
 export default function SearchBox({updateInfo}){
     const API_URL = "https://api.openweathermap.org/data/2.5/weather"
     const API_KEY = "8db1ff76b70fb97d78f527ce022b5647"
     let [city, setCity] = useState("");
     let [error, setError] = useState(false);
-
 
     let getWeatherInfo = async()=>{
         try{
@@ -24,7 +24,7 @@ export default function SearchBox({updateInfo}){
                 temp_min: jsonResponse.main.temp_min,
                 feels_like: jsonResponse.main.feels_like,
                 humidity:  jsonResponse.main.humidity,
-                weather: jsonResponse.weather[0].description
+                weather: jsonResponse.weather[0].description,
             }
             console.log(result);
             return result;
@@ -44,6 +44,7 @@ export default function SearchBox({updateInfo}){
             event.preventDefault();
             console.log(city);
             setCity("");
+            setError(false);
             let newInfo = await getWeatherInfo();
             updateInfo(newInfo);
         }catch(err){
@@ -68,10 +69,15 @@ export default function SearchBox({updateInfo}){
                 />
                 <br /><br />
 
-                <Button variant="contained" endIcon={<SearchIcon /> }type="submit">
-                    Search
-                </Button> 
-                {error && <p style={{color: "red"}}>No such place exists!</p>}
+            
+
+                <Button  endIcon={<SearchIcon/>}variant="contained" type="submit">
+                   <span>Search</span> 
+                </Button>
+
+                {error && <p style={{color: "red"}}>No such Place exists!</p>}
+                
+                
             </form>
         </div>
 

@@ -17,13 +17,13 @@ export default function InfoBox({info}){
                 <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
                         sx={{ height: 140 }}
-                        image={info.humidity > 75 ? RAIN_URL : info.temp > 25 ? HOT_URL : COLD_URL}
+                        image={info.humidity > 80 ? RAIN_URL : info.temp > 25 ? HOT_URL : COLD_URL}
                         title="green iguana"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                         {info.city}
-                        {info.humidity > 75 ? <ThunderstormIcon/> : info.temp > 25 ? <WbSunnyIcon/> : <AcUnitIcon/>}
+                        {info.humidity > 80 ? <ThunderstormIcon/> : info.temp > 25 ? <WbSunnyIcon/> : <AcUnitIcon/>}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" component={"span"}>
                         <div>Tempreture = {info.temp}&deg;C</div>
